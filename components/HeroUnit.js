@@ -1,6 +1,7 @@
 import DownArrowIcon from '../resources/down-arrow-icon.svg'
 import NavigationBar from './NavigationBar'
 import ReactBKKLogo from '../resources/reactbkk.svg'
+import $ from 'jquery'
 
 export default function HeroUnit () {
   return (
@@ -70,15 +71,28 @@ function HeroUnitLogo () {
 }
 
 function HeroUnitFooter () {
+  const handleScrollPanel = function () {
+    $('html, body').stop().animate({
+      scrollTop: $('#tickets').offset().top
+    }, 1000)
+  }
   return (
     <div className='footer'>
       <div className='nav'>
         <NavigationBar />
       </div>
-      <DownArrowIcon />
+      <a onClick={handleScrollPanel}>
+        <DownArrowIcon />
+      </a>
       <style jsx>{`
         .nav {
           margin-bottom: 30px;
+        }
+        
+        body {
+          -webkit-overflow-scrolling: touch;
+          scroll-behavior: smooth;
+          color: red;
         }
       `}</style>
     </div>
